@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.bg-pattern {
+    background-color: #f8f9fa;
+    background-image: radial-gradient(#e9ecef 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.skill-level {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.skill-level div {
+    height: 100%;
+    background-color: #3B82F6;
+    border-radius: 4px;
+}
+.transition-all {
+    transition: all 0.3s ease;
+}
