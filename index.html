@@ -3,56 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro - Desenvolvedor</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <meta name="color-scheme" content="light dark">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <title>Pedro Cid - Desenvolvedor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="css/output.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50">
     <!-- Navegação -->
-    <nav class="fixed w-full bg-white shadow-md z-10">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-bold text-blue-600">Pedro</div>
-                <div class="hidden md:flex">
-                    <a href="#sobre" class="hover:text-blue-600 transition-all px-3">Sobre</a>
-                    <a href="#conhecimentos" class="hover:text-blue-600 transition-all px-3">Conhecimentos</a>
-                    <a href="#projetos" class="hover:text-blue-600 transition-all px-3">Projetos</a>
-                    <a href="#educacao" class="hover:text-blue-600 transition-all px-3">Educação</a>
-                    <a href="#contato" class="hover:text-blue-600 transition-all px-3">Contato</a>
-                </div>
-                <button class="md:hidden focus:outline-none" id="menu-button">
-                    <i class="fas fa-bars text-gray-700"></i>
-                </button>
-            </div>
-            <!-- Menu mobile -->
-            <div class="md:hidden hidden transition-all" id="mobile-menu">
-                <div class="flex flex-col py-4">
-                    <a href="#sobre" class="hover:text-blue-600 transition-all py-2">Sobre</a>
-                    <a href="#conhecimentos" class="hover:text-blue-600 transition-all py-2">Conhecimentos</a>
-                    <a href="#projetos" class="hover:text-blue-600 transition-all py-2">Projetos</a>
-                    <a href="#educacao" class="hover:text-blue-600 transition-all py-2">Educação</a>
-                    <a href="#contato" class="hover:text-blue-600 transition-all py-2">Contato</a>
-                </div>
-            </div>
+    <div class="assistant" id="assistant">
+        <button class="assistant-btn" type="button" id="assistant-btn" aria-expanded="false" aria-controls="assistant-panel" aria-label="Abrir menu de seções">
+            <svg class="assistant-sprite" viewBox="0 -3 32 32" aria-hidden="true" focusable="false">
+                <rect class="px-desk" x="3" y="6" width="12" height="12"/>
+                <rect class="px-screen" x="4" y="7" width="10" height="9"/>
+                <g class="px-line">
+                    <rect x="5" y="8" width="6" height="1"/>
+                    <rect x="5" y="10" width="4" height="1"/>
+                    <rect x="5" y="12" width="7" height="1"/>
+                    <rect x="5" y="14" width="3" height="1"/>
+                </g>
+                <rect class="px-screen-dark" x="4" y="16" width="10" height="1"/>
+                <rect class="px-desk-dark" x="8" y="18" width="3" height="2"/>
+
+                <rect class="px-skin-dark" x="24" y="12" width="3" height="2"/>
+                <g class="px-shirt">
+                    <rect x="21" y="14" width="9" height="8"/>
+                    <rect x="20" y="15" width="2" height="2"/>
+                </g>
+                <rect class="px-shirt-dark" x="21" y="14" width="1" height="8"/>
+
+                <g class="px-hand">
+                    <rect class="px-skin" x="17" y="16" width="4" height="1"/>
+                    <rect class="px-skin" x="15" y="17" width="3" height="2"/>
+                    <rect class="px-skin-dark" x="15" y="19" width="3" height="1"/>
+                </g>
+
+                <g class="head-side">
+                    <rect class="px-skin" x="22" y="6" width="7" height="7"/>
+                    <rect class="px-skin" x="21" y="8" width="1" height="1"/>
+                    <g class="px-hair">
+                        <rect x="22" y="4" width="8" height="2"/>
+                        <rect x="28" y="6" width="2" height="4"/>
+                        <rect x="22" y="6" width="2" height="1"/>
+                        <rect x="22" y="10" width="3" height="1"/>
+                        <rect x="22" y="11" width="5" height="2"/>
+                    </g>
+                    <rect class="px-eye" x="23" y="8" width="1" height="1"/>
+                </g>
+
+                <g class="head-front">
+                    <rect class="px-skin" x="22" y="6" width="7" height="7"/>
+                    <g class="px-hair">
+                        <rect x="23" y="4" width="5" height="1"/>
+                        <rect x="22" y="5" width="7" height="1"/>
+                        <rect x="22" y="6" width="1" height="2"/>
+                        <rect x="28" y="6" width="1" height="2"/>
+                        <rect x="22" y="10" width="7" height="2"/>
+                        <rect x="23" y="12" width="5" height="1"/>
+                    </g>
+                    <rect class="px-skin" x="24" y="11" width="3" height="1"/>
+                    <g class="px-eye">
+                        <rect x="23" y="8" width="1" height="1"/>
+                        <rect x="27" y="8" width="1" height="1"/>
+                    </g>
+                </g>
+
+                <rect class="px-desk" x="1" y="20" width="30" height="2"/>
+                <rect class="px-desk-dark" x="1" y="22" width="30" height="1"/>
+                <rect class="px-keyboard" x="15" y="19" width="7" height="1"/>
+            </svg>
+        </button>
+
+        <div class="assistant-panel" id="assistant-panel">
+            <p class="assistant-title">Para onde?</p>
+            <nav class="assistant-nav" aria-label="Seções do site">
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#conhecimentos" class="nav-link">Conhecimentos</a>
+                <a href="#projetos" class="nav-link">Projetos</a>
+                <a href="#educacao" class="nav-link">Educação</a>
+                <a href="#contato" class="nav-link">Contato</a>
+            </nav>
+            <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-moon" aria-hidden="true"></i>
+                <span class="theme-toggle-label">Tema escuro</span>
+            </button>
         </div>
-    </nav>
+    </div>
 
     <!-- Header / Hero -->
-    <header class="pt-24 pb-12 md:pt-32 md:pb-24 bg-pattern">
-        <div class="container mx-auto px-16">
-            <div class="flex flex-col md:flex-row items-center justify-between">
+    <header class="hero pt-24 pb-12 md:pt-32 md:pb-24 bg-pattern">
+        <div class="container mx-auto">
+            <div class="hero-row flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-8 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Pedro</h1>
-                    <h2 class="text-2xl md:text-3xl text-gray-600 mb-6">Desenvolvedor & Formado em Ciência da Computação</h2>
-                    <p class="text-lg text-gray-700 mb-6">Desenvolvedor apaixonado por criar soluções inovadoras e eficientes.</p>
-                    <div class="flex space-x-4">
-                        <a href="#contato" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md transition-all">Contato</a>
-                        <a href="#projetos" class="border border-blue-600 text-blue-600 hover:bg-blue-50 py-2 px-6 rounded-md transition-all">Ver Projetos</a>
+                    <h1 class="hero-name text-4xl md:text-5xl font-bold mb-4">Pedro Cid</h1>
+                    <h2 class="hero-role text-2xl md:text-3xl text-gray-600 mb-6">Desenvolvedor | Bacharel em Ciência da Computação</h2>
+                    <p class="hero-tagline text-lg text-gray-700 mb-6">Desenvolvedor com experiência na criação de soluções inovadoras e eficientes.</p>
+                    <div class="hero-actions flex flex-wrap">
+                        <a href="#contato" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md transition-all">Contato</a>
+                        <a href="#projetos" class="btn btn-outline border border-blue-600 text-blue-600 hover:bg-blue-50 py-2 px-6 rounded-md transition-all">Ver Projetos</a>
                     </div>
                 </div>
                 <div class="md:w-1/3">
-                    <div class="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg">
+                    <div class="hero-photo w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg">
                         <img src="img/profile.jpg" alt="Foto de Pedro" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -63,30 +123,28 @@
     <!-- Sobre / Resumo -->
     <section id="sobre" class="py-12 md:py-24">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">Sobre Mim</h2>
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                <p class="text-lg leading-relaxed text-gray-700">
-                    Recentemente, terminei minha faculdade de Ciência da Computação. 
-                    Já trabalhei em projetos envolvendo principalmente a linguagem de programação Java,
-                    mas tenho conhecimento em outras áreas também. 
-                    Além disso, tenho facilidade para trabalhar em equipe, sou proativo, adapto-me muito bem a situações diferentes e aprendo facilmente novas tecnologias. 
-                    Por fim, sou bom em pesquisar e encontrar soluções de forma eficaz.
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">Sobre Mim</h2>
+            <div class="card max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <p class="lead text-lg leading-relaxed text-gray-700">
+                    Atuo no desenvolvimento de aplicações Java utilizando Spring Boot, APIs REST e aplicações web com React.
+                    Possuo experiência com bancos de dados PostgreSQL e MySQL, autenticação via Keycloak, integração entre frontend e backend e desenvolvimento de sistemas corporativos.
+                    Facilidade de adaptação e aprendizado de novas tecnologias, com forte habilidade de pesquisa e resolução de problemas.
                 </p>
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-blue-50 p-6 rounded-lg text-center">
-                        <i class="fas fa-laptop-code text-3xl text-blue-600 mb-4"></i>
+                    <div class="tile bg-blue-50 p-6 rounded-lg text-center">
+                        <i class="fas fa-laptop-code text-3xl text-blue-600 mb-4" aria-hidden="true"></i>
                         <h3 class="font-bold text-xl mb-2">Desenvolvimento</h3>
-                        <p class="text-gray-700">Experiência em desenvolvimento desktop, web e jogos.</p>
+                        <p class="text-gray-700">Experiência em desenvolvimento de sistemas corportativos, web e jogos.</p>
                     </div>
-                    <div class="bg-blue-50 p-6 rounded-lg text-center">
-                        <i class="fas fa-graduation-cap text-3xl text-blue-600 mb-4"></i>
+                    <div class="tile bg-blue-50 p-6 rounded-lg text-center">
+                        <i class="fas fa-graduation-cap text-3xl text-blue-600 mb-4" aria-hidden="true"></i>
                         <h3 class="font-bold text-xl mb-2">Formação</h3>
                         <p class="text-gray-700">Formado em Ciência da Computação na Unifor.</p>
                     </div>
-                    <div class="bg-blue-50 p-6 rounded-lg text-center">
-                        <i class="fas fa-code-branch text-3xl text-blue-600 mb-4"></i>
+                    <div class="tile bg-blue-50 p-6 rounded-lg text-center">
+                        <i class="fas fa-code-branch text-3xl text-blue-600 mb-4" aria-hidden="true"></i>
                         <h3 class="font-bold text-xl mb-2">Projetos</h3>
-                        <p class="text-gray-700">Portfólio diversificado de projetos pessoais e acadêmicos.</p>
+                        <p class="text-gray-700">Portfólio de projetos profissionais, pessoais e acadêmicos.</p>
                     </div>
                 </div>
             </div>
@@ -96,220 +154,238 @@
     <!-- Conhecimentos / Habilidades -->
     <section id="conhecimentos" class="py-12 md:py-24 bg-pattern">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">Conhecimentos</h2>
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">Conhecimentos</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Linguagens de Programação -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-6 text-blue-700"><i class="fas fa-code mr-2"></i>Linguagens de Programação</h3>
+                <div class="card bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="card-title text-xl font-bold mb-6 text-blue-700"><i class="fas fa-code mr-2" aria-hidden="true"></i>Linguagens de Programação</h3>
                     <div class="space-y-4">
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Java</span>
-                                <span>Avançado</span>
+                                <span class="skill-name font-medium">Java</span>
+                                <span class="skill-tag">Avançado</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 90%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">C#</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">C#</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 75%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">JavaScript</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">JavaScript</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 70%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Clojure</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">TypeScript</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="skill-name font-medium">Clojure</span>
+                                <span class="skill-tag">Intermediário</span>
+                            </div>
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 65%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Python</span>
-                                <span>Básico</span>
+                                <span class="skill-name font-medium">C++, C, Kotlin, Assembly, Python</span>
+                                <span class="skill-tag">Básico</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 40%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">C++, C</span>
-                                <span>Básico</span>
-                            </div>
-                            <div class="skill-level">
-                                <div style="width: 40%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Kotlin</span>
-                                <span>Básico</span>
-                            </div>
-                            <div class="skill-level">
-                                <div style="width: 40%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Assembly</span>
-                                <span>Básico</span>
-                            </div>
-                            <div class="skill-level">
-                                <div style="width: 35%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Web -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-6 text-blue-700"><i class="fas fa-globe mr-2"></i>Desenvolvimento Web</h3>
+                <div class="card bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="card-title text-xl font-bold mb-6 text-blue-700"><i class="fas fa-globe mr-2" aria-hidden="true"></i>Desenvolvimento Web</h3>
                     <div class="space-y-4">
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">HTML e CSS</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">HTML & CSS</span>
+                                <span class="skill-tag">Avançado</span>
                             </div>
-                            <div class="skill-level">
-                                <div style="width: 75%"></div>
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 90%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Bootstrap</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">Spring Boot</span>
+                                <span class="skill-tag">Avançado</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="skill-name font-medium">Web Services / APIs REST</span>
+                                <span class="skill-tag">Avançado</span>
+                            </div>
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="skill-name font-medium">React</span>
+                                <span class="skill-tag">Intermediário</span>
+                            </div>
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 70%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Spring Boot</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">Next.js</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 65%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Web Services e APIs REST</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">Tailwind CSS</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="skill-name font-medium">Bootstrap</span>
+                                <span class="skill-tag">Intermediário</span>
+                            </div>
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 70%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Ferramentas e Plataformas -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-6 text-blue-700"><i class="fas fa-tools mr-2"></i>Ferramentas e Plataformas</h3>
+                <div class="card bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="card-title text-xl font-bold mb-6 text-blue-700"><i class="fas fa-tools mr-2" aria-hidden="true"></i>Ferramentas e Plataformas</h3>
                     <div class="space-y-4">
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">IntelliJ, Visual Studio Code</span>
-                                <span>Avançado</span>
+                                <span class="skill-name font-medium">IntelliJ IDEA, Visual Studio Code</span>
+                                <span class="skill-tag">Avançado</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 85%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Git</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">Docker</span>
+                                <span class="skill-tag">Avançado</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="skill-name font-medium">Git</span>
+                                <span class="skill-tag">Intermediário</span>
+                            </div>
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 70%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Unity, Godot</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">GitLab e GitHub</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 70%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">ESP32</span>
-                                <span>Intermediário</span>
+                                <span class="skill-name font-medium">Keycloak</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 65%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">MySQL</span>
-                                <span>Básico</span>
+                                <span class="skill-name font-medium">PostgreSQL</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
-                                <div style="width: 45%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">PostgreSQL</span>
-                                <span>Básico</span>
-                            </div>
-                            <div class="skill-level">
-                                <div style="width: 45%"></div>
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 65%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Android Studio</span>
-                                <span>Básico</span>
+                                <span class="skill-name font-medium">Unity, Godot, ESP32</span>
+                                <span class="skill-tag">Intermediário</span>
                             </div>
-                            <div class="skill-level">
-                                <div style="width: 40%"></div>
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="skill-name font-medium">MySQL, Android Studio</span>
+                                <span class="skill-tag">Básico</span>
+                            </div>
+                            <div class="skill-level" aria-hidden="true">
+                                <div style="width: 45%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Conceitos e Metodologias -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-6 text-blue-700"><i class="fas fa-brain mr-2"></i>Conceitos e Metodologias</h3>
+                <div class="card bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="card-title text-xl font-bold mb-6 text-blue-700"><i class="fas fa-brain mr-2" aria-hidden="true"></i>Conceitos e Metodologias</h3>
                     <div class="space-y-4">
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Programação Orientada a Objetos</span>
-                                <span>Avançado</span>
+                                <span class="skill-name font-medium">Programação Orientada a Objetos</span>
+                                <span class="skill-tag">Avançado</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 90%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="font-medium">Estrutura de Dados</span>
-                                <span>Avançado</span>
+                                <span class="skill-name font-medium">Estrutura de Dados</span>
+                                <span class="skill-tag">Avançado</span>
                             </div>
-                            <div class="skill-level">
+                            <div class="skill-level" aria-hidden="true">
                                 <div style="width: 85%"></div>
                             </div>
                         </div>
@@ -322,70 +398,70 @@
     <!-- Projetos -->
     <section id="projetos" class="py-12 md:py-24">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">Projetos Principais</h2>
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">Projetos Pessoais e Acadêmicos</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <!-- Projeto 1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
-                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+                    <div class="project-media h-48 bg-blue-100 flex items-center justify-center" aria-hidden="true">
                         <i class="fas fa-paw text-6xl text-blue-500"></i>
                     </div>
-                    <div class="p-6">
+                    <div class="project-body p-6">
                         <h3 class="font-bold text-xl mb-2">Casa Do Pet</h3>
                         <p class="text-gray-700 mb-4">Sistema completo para gerenciamento de petshop com interface web e funcionalidades para cadastro de pets, clientes e serviços.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Java</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Web</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Bootstrap</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Java</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Web</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Bootstrap</span>
                         </div>
-                        <a href="https://github.com/pedroaacf/Casa-Do-Pet-Full" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                            <i class="fab fa-github mr-2"></i> Ver no GitHub
+                        <a href="https://github.com/pedroaacf/Casa-Do-Pet-Full" target="_blank" class="doc-link text-blue-600 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2" aria-hidden="true"></i> Ver no GitHub
                         </a>
                     </div>
                 </div>
                 
                 <!-- Projeto 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
-                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+                    <div class="project-media h-48 bg-blue-100 flex items-center justify-center" aria-hidden="true">
                         <i class="fas fa-comments text-6xl text-blue-500"></i>
                     </div>
-                    <div class="p-6">
+                    <div class="project-body p-6">
                         <h3 class="font-bold text-xl mb-2">Chat Link</h3>
                         <p class="text-gray-700 mb-4"> Protótipo de chat (somente mensagens) feito com Spring Boot, WebSocket (STOMP) e JPA/Postgres.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Spring Boot</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Java</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Postgres</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Spring Boot</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Java</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Postgres</span>
                         </div>
-                        <a href="https://github.com/pedroaacf/chat-link" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                            <i class="fab fa-github mr-2"></i> Ver no GitHub
+                        <a href="https://github.com/pedroaacf/chat-link" target="_blank" class="doc-link text-blue-600 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2" aria-hidden="true"></i> Ver no GitHub
                         </a>
                     </div>
                 </div>
                 
                 <!-- Projeto 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
-                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+                    <div class="project-media h-48 bg-blue-100 flex items-center justify-center" aria-hidden="true">
                         <i class="fas fa-sign-in-alt text-6xl text-blue-500"></i>
                     </div>
-                    <div class="p-6">
+                    <div class="project-body p-6">
                         <h3 class="font-bold text-xl mb-2">Login Form</h3>
                         <p class="text-gray-700 mb-4">Interface moderna de formulário de login com validação e design responsivo utilizando boas práticas de UX/UI.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">HTML</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">CSS</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">JavaScript</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">HTML</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">CSS</span>
+                            <span class="chip bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">JavaScript</span>
                         </div>
-                        <a href="https://github.com/pedroaacf/Login-Form" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                            <i class="fab fa-github mr-2"></i> Ver no GitHub
+                        <a href="https://github.com/pedroaacf/Login-Form" target="_blank" class="doc-link text-blue-600 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2" aria-hidden="true"></i> Ver no GitHub
                         </a>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <a href="https://github.com/pedroaacf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800">
-                    <i class="fab fa-github mr-2"></i> Ver mais projetos no GitHub
+                <a href="https://github.com/pedroaacf" target="_blank" class="doc-link inline-flex items-center text-blue-600 hover:text-blue-800">
+                    <i class="fab fa-github mr-2" aria-hidden="true"></i> Ver mais projetos no GitHub
                 </a>
             </div>
         </div>
@@ -394,59 +470,82 @@
     <!-- Educação / Experiências -->
     <section id="educacao" class="py-12 md:py-24 bg-pattern">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">Educação & Experiências</h2>
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">Educação & Experiências</h2>
             
             <div class="max-w-3xl mx-auto">
                 <!-- Educação -->
-                <div class="bg-white p-8 rounded-lg shadow-md mb-8">
-                    <h3 class="text-2xl font-bold mb-6 text-blue-700"><i class="fas fa-university mr-2"></i>Formação Acadêmica</h3>
+                <div class="card bg-white p-8 rounded-lg shadow-md mb-8">
+                    <h3 class="card-title text-2xl font-bold mb-6 text-blue-700"><i class="fas fa-university mr-2" aria-hidden="true"></i>Formação Acadêmica</h3>
                     
-                    <div class="flex border-l-4 border-blue-600 pl-6 py-2">
+                    <div class="timeline-item flex border-l-4 border-blue-600 pl-6 py-2">
                         <div class="w-full">
                             <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                                <h4 class="font-bold text-lg">Bacharelado em Ciência da Computação</h4>
-                                <span class="text-gray-600">2020 - 2025</span>
+                                <h4 class="timeline-role font-bold text-lg">Bacharelado em Ciência da Computação</h4>
+                                <span class="timeline-period text-gray-600">2020 - 2025</span>
                             </div>
-                            <p class="text-gray-700 mb-1">Universidade de Fortaleza (Unifor)</p>
-                            <p class="text-gray-600 italic">Foco em desenvolvimento de software, estrutura de dados e algoritmos.</p>
+                            <p class="timeline-org text-gray-700 mb-1">Universidade de Fortaleza (Unifor)</p>
+                            <p class="timeline-desc text-gray-600 italic">Conclusão do curso em 20/06/2025; Colação de grau em 04/07/2025. Foco em desenvolvimento de software, estrutura de dados e algoritmos.</p>
                         </div>
                     </div>
-                    <a href="documents/diploma-pedro-cid.pdf" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                            <i class="fas fa-certificate mr-2"></i> Ver Diploma Digital (PDF)
+                    <a href="https://diplomas.unifor.br/diploma-valido?code=555.555.760b4a6af720" target="_blank" class="doc-link text-blue-600 hover:underline flex items-center">
+                            <i class="fas fa-certificate mr-2" aria-hidden="true"></i> Ver Diploma Digital (PDF)
                     </a>
                 </div>
 
                 <!-- Experiências -->
-                <div class="bg-white p-8 rounded-lg shadow-md mb-8">
-                    <h3 class="text-2xl font-bold mb-6 text-blue-700"><i class="fas fa-briefcase mr-2"></i>Experiência</h3>
-                    
-                    <div class="flex border-l-4 border-blue-600 pl-6 py-2">
+                <div class="card bg-white p-8 rounded-lg shadow-md mb-8">
+                    <h3 class="card-title text-2xl font-bold mb-6 text-blue-700"><i class="fas fa-briefcase mr-2" aria-hidden="true"></i>Experiência</h3>
+
+                    <div class="timeline-item flex border-l-4 border-blue-600 pl-6 py-2">
                         <div class="w-full">
                             <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                                <h4 class="font-bold text-lg">Experiência como Desenvolvedor de Software</h4>
-                                <span class="text-gray-600">12/25 - Atual</span>
+                                <h4 class="timeline-role font-bold text-lg">Programador Pleno</h4>
+                                <span class="timeline-period text-gray-600">03/26 - Atual</span>
                             </div>
-                            <p class="text-gray-700 mb-1">ONG Instituto Educar Aparecida</p>
-                            <p class="text-gray-600 italic">Desenvolvimento e manutenção de plataformas digitais, como também a implementação de soluções tecnológicas para otimizar os processos internos.</p>
+                            <p class="timeline-org text-gray-700 mb-1">Unichristus</p>
+                            <ul class="timeline-desc text-gray-600 italic list-disc list-inside">
+                                <li>Criação do CEUA Digital da Unichristus.</li>
+                                <li>Desenvolvimento e manutenção de aplicações backend com Java e Spring Boot.</li>
+                                <li>Desenvolvimento de interfaces frontend utilizando React e TypeScript.</li>
+                                <li>Implementação e consumo de APIs REST, integração entre frontend e backend.</li>
+                                <li>Desenvolvimento utilizando PostgreSQL, JPA/Hibernate e Spring Security.</li>
+                                <li>Implementação de autenticação e autorização utilizando Keycloak.</li>
+                                <li>Utilização de Docker, Git e GitLab durante o desenvolvimento.</li>
+                            </ul>
                         </div>
                     </div>
-                    <a href="documents/Pedro Augusto Araujo Cid Filho.pdf" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                            <i class="fas fa-certificate mr-2"></i> Ver Certificado do início do voluntariado (PDF)
+
+                    <div class="timeline-item flex border-l-4 border-blue-600 pl-6 py-2">
+                        <div class="w-full">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                                <h4 class="timeline-role font-bold text-lg">Desenvolvedor de Software</h4>
+                                <span class="timeline-period text-gray-600">12/25 - 04/26</span>
+                            </div>
+                            <p class="timeline-org text-gray-700 mb-1">ONG Instituto Educar Aparecida</p>
+                            <ul class="timeline-desc text-gray-600 italic list-disc list-inside">
+                                <li>Criação e manutenção do site, plataformas e ferramentas digitais da ONG.</li>
+                                <li>Desenvolvimento de soluções de software para otimizar os processos internos e ações da ONG.</li>
+                                <li>Auxílio na implementação de tecnologias para aumentar a eficiência das atividades.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="documents/Pedro Augusto Araujo Cid Filho.pdf" target="_blank" class="doc-link doc-link-spaced text-blue-600 hover:underline flex items-center">
+                            <i class="fas fa-certificate mr-2" aria-hidden="true"></i> Ver Certificado do início do voluntariado (PDF)
                     </a>
                 </div>
                 
                 <!-- Certificados -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold mb-6 text-blue-700"><i class="fas fa-award mr-2"></i>Certificados</h3>
+                <div class="card bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="card-title text-2xl font-bold mb-6 text-blue-700"><i class="fas fa-award mr-2" aria-hidden="true"></i>Certificados</h3>
                     
-                    <div class="flex border-l-4 border-blue-600 pl-6 py-2">
+                    <div class="timeline-item flex border-l-4 border-blue-600 pl-6 py-2">
                         <div class="w-full">
                             <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                                <h4 class="font-bold text-lg">Curso de Inglês</h4>
-                                <span class="text-gray-600">Completo</span>
+                                <h4 class="timeline-role font-bold text-lg">Curso de Inglês</h4>
+                                <span class="timeline-period text-gray-600">Completo</span>
                             </div>
-                            <p class="text-gray-700 mb-1">Cultura Inglesa</p>
-                            <p class="text-gray-600 italic">Certificado de proficiência no idioma inglês.</p>
+                            <p class="timeline-org text-gray-700 mb-1">Cultura Inglesa</p>
+                            <p class="timeline-desc text-gray-600 italic">Certificado de proficiência no idioma inglês.</p>
                         </div>
                     </div>
                 </div>
@@ -457,35 +556,34 @@
     <!-- Contato -->
     <section id="contato" class="py-12 md:py-24">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">Contato</h2>
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">Contato</h2>
             
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            <div class="card max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="text-xl font-bold mb-6">Se quiser entrar em contato</h3>
-                        <p class="text-gray-700 mb-6">Estou disponível para oportunidades de estágio, trabalho e projetos freelance. Entre em contato para conversarmos!</p>
-                        
+                        <h3 class="contact-heading text-xl font-bold mb-6">Se quiser entrar em contato</h3>
+
                         <div class="space-y-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-envelope text-blue-600 text-xl w-8"></i>
-                                <span class="text-gray-700">pedro.augustoo1502@gmail.com</span>
+                            <div class="contact-item flex items-center">
+                                <i class="fas fa-envelope text-blue-600 text-xl w-8" aria-hidden="true"></i>
+                                <span class="text-gray-700">pedroaugustocidfilho@gmail.com</span>
                             </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-phone text-blue-600 text-xl w-8"></i>
+                            <div class="contact-item flex items-center">
+                                <i class="fas fa-phone text-blue-600 text-xl w-8" aria-hidden="true"></i>
                                 <span class="text-gray-700">(85) 99726-7688</span>
                             </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-map-marker-alt text-blue-600 text-xl w-8"></i>
+                            <div class="contact-item flex items-center">
+                                <i class="fas fa-map-marker-alt text-blue-600 text-xl w-8" aria-hidden="true"></i>
                                 <span class="text-gray-700">Fortaleza, CE</span>
                             </div>
                         </div>
                         
                         <div class="mt-8 flex space-x-4">
-                            <a href="https://github.com/pedroaacf" target="_blank" class="bg-gray-800 hover:bg-gray-900 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com/pedroaacf" target="_blank" aria-label="Perfil no GitHub" class="social-btn bg-gray-800 hover:bg-gray-900 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-github" aria-hidden="true"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/pedro-filho-a54721241" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="https://www.linkedin.com/in/pedro-filho-a54721241" target="_blank" aria-label="Perfil no LinkedIn" class="social-btn bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -494,18 +592,18 @@
                         <form action="https://api.web3forms.com/submit" method="POST">
                             <input type="hidden" name="access_key" value="00e13cf1-b776-44b3-98bb-21744fa339df">
                             <div class="mb-4">
-                                <label for="name" class="block text-gray-700 mb-2">Nome</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                <label for="name" class="label block text-gray-700 mb-2">Nome</label>
+                                <input type="text" id="name" name="name" class="input w-full px-4 py-2 border border-gray-300 rounded-md">
                             </div>
                             <div class="mb-4">
-                                <label for="email" class="block text-gray-700 mb-2">Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                <label for="email" class="label block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="input w-full px-4 py-2 border border-gray-300 rounded-md">
                             </div>
                             <div class="mb-4">
-                                <label for="message" class="block text-gray-700 mb-2">Mensagem</label>
-                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                                <label for="message" class="label block text-gray-700 mb-2">Mensagem</label>
+                                <textarea id="message" name="message" rows="4" class="input w-full px-4 py-2 border border-gray-300 rounded-md"></textarea>
                             </div>
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md transition-all w-full">Enviar Mensagem</button>
+                            <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md transition-all w-full">Enviar Mensagem</button>
                         </form>
                     </div>
                 </div>
@@ -514,9 +612,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 bg-gray-800 text-white">
+    <footer class="site-footer py-8 bg-gray-800 text-white">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Pedro - Desenvolvedor. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Pedro - Desenvolvedor. Todos os direitos reservados.</p>
         </div>
     </footer>
 
